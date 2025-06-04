@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Card } from '@/types/Card'
+import type { Card } from '../types/Card'
 
 defineProps<{ card: Card }>()
 

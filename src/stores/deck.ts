@@ -5,8 +5,7 @@ import type { Card } from '../types/Card'
 export const useDeckStore = defineStore('deck', {
   state: () => ({
     allCards: [] as Card[],
-    deck: [] as Card[],
-    gameState: null as any // potrai definire un tipo preciso più avanti
+    deck: [] as Card[]
   }),
 
   actions: {

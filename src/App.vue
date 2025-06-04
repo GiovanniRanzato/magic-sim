@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
 import DeckBuilderPreview from './components/DeckBuilderPreview.vue'
+import Game from './components/Game.vue'
 
 const mode = ref<'deck' | 'game'>('deck')
 
@@ -41,7 +42,7 @@ function setMode(newMode: 'deck' | 'game') {
       <div v-if="mode === 'game'">
         <!-- Qui andrà la simulazione -->
         <h2 class="text-xl font-semibold mb-4">Simulazione Partita</h2>
-        <p>Interazione con il mazzo e zone di gioco</p>
+        <Game />>
       </div>
     </section>
   </div>
