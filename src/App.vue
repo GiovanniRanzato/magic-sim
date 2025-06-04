@@ -12,7 +12,7 @@ function setMode(newMode: 'deck' | 'game') {
 </script>
 
 <template>
-  <div class="p-4 max-w-4xl mx-auto">
+  <div class="p-4 max-w-6xl mx-auto">
     <nav class="mb-6 flex gap-4">
       <button 
         @click="setMode('deck')" 
@@ -35,8 +35,11 @@ function setMode(newMode: 'deck' | 'game') {
         <!-- Qui inseriremo configurazione mazzo -->
         <h2 class="text-xl font-semibold mb-4">Configura Mazzo</h2>
         <p>Seleziona carte dal pool per costruire il mazzo</p>
+        <div class="deck-builder">
         <GalleryCard />
         <DeckBuilderPreview />
+        </div>
+
       </div>
 
       <div v-if="mode === 'game'">
@@ -47,3 +50,10 @@ function setMode(newMode: 'deck' | 'game') {
     </section>
   </div>
 </template>
+<style scoped>
+.deck-builder{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+}
+</style>

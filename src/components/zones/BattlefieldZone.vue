@@ -10,13 +10,12 @@
           :key="card.uuid"
           class="card-wrapper"
           :class="{ tapped: isTapped(card) }"
-        >
-          <img :src="card.imageUrl" :alt="card.name" class="card-img" />
-          <div class="actions">
-            <button @click="toggleTap(card)">Tappa</button>
+        > 
+        <CardAction :card="card">
+            <button @click="toggleTap(card)">{{ isTapped(card) ? "Stap" : "Tap"}}</button>
             <button @click="moveToHand(card, 'creatures')">→ Mano</button>
             <button @click="moveToGraveyard(card, 'creatures')">→ Cimitero</button>
-          </div>
+        </CardAction>
         </div>
       </div>
     </div>
@@ -29,12 +28,11 @@
           class="card-wrapper"
           :class="{ tapped: isTapped(card) }"
         >
-          <img :src="card.imageUrl" :alt="card.name" class="card-img" />
-          <div class="actions">
+            <CardAction :card="card">
             <button @click="toggleTap(card)">Tappa</button>
             <button @click="moveToHand(card, 'lands')">→ Mano</button>
             <button @click="moveToGraveyard(card, 'lands')">→ Cimitero</button>
-          </div>
+            </CardAction>
         </div>
       </div>
     </div>
@@ -45,6 +43,7 @@
 import { computed, reactive } from 'vue'
 import { useGameStore } from '../../stores/game'
 import type { Card } from '../../types/Card'
+import CardAction from '../CardAction.vue'
 
 const game = useGameStore()
 
@@ -107,12 +106,6 @@ function moveToGraveyard(card: Card, zone: 'lands' | 'creatures') {
   align-items: center;
   width: 90px;
   transition: transform 0.3s ease;
-}
-
-.card-img {
-  width: 80px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
 }
 
 .actions {

@@ -8,14 +8,13 @@
         :key="card.uuid"
         class="card-wrapper"
       >
-        <img :src="card.imageUrl" :alt="card.name" class="card-img" />
-        <div class="actions">
+        <CardAction :card="card">
           <button @click="playAsCreature(card)">Battlefield</button>
           <button @click="playAsLand(card)">Lands</button>
           <button @click="sendToGraveyard(card)">Cimitero</button>
           <button @click="putOnTop(card)">↑ Mazzo</button>
           <button @click="putOnBottom(card)">↓ Mazzo</button>
-        </div>
+        </CardAction>
       </div>
     </div>
   </div>
@@ -25,6 +24,7 @@
 import { computed } from 'vue'
 import { useGameStore } from '../../stores/game'
 import type { Card } from '../../types/Card'
+import CardAction from '../CardAction.vue'
 
 const game = useGameStore()
 
@@ -76,15 +76,6 @@ function putOnBottom(card: Card) {
   flex-direction: column;
   align-items: center;
   width: 100px;
-}
-
-.card-img {
-  width: 80px;
-  height: 112px;
-  object-fit: cover;
-  border: 1px solid #aaa;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .actions {
