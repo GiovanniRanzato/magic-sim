@@ -10,11 +10,13 @@
 
     <!-- Grid carte -->
     <div class="card-grid">
-      <CardDisplay
+      <DeckBuilderCardController
         v-for="card in filteredCards"
         :key="card.uuid"
         :card="card"
-      />
+      >
+      <CardDisplay :card=card></CardDisplay>
+    </DeckBuilderCardController>
     </div>
   </div>
 </template>
@@ -23,6 +25,7 @@
 import { ref, onMounted, computed } from 'vue'
 import cardData from '../assets/FIN.json'
 import CardDisplay from './CardDisplay.vue'
+import DeckBuilderCardController from './DeckBuilderCardController.vue'
 
 const cards = ref([])
 const searchQuery = ref('')

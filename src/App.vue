@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import PoolConfig from './components/PoolConfig.vue'
 import GalleryCard from './components/GalleryCard.vue'
+import DeckBuilderPreview from './components/DeckBuilderPreview.vue'
 
-const mode = ref<'pool' | 'deck' | 'game'>('pool')
+const mode = ref<'deck' | 'game'>('deck')
 
-function setMode(newMode: 'pool' | 'deck' | 'game') {
+function setMode(newMode: 'deck' | 'game') {
   mode.value = newMode
 }
 </script>
@@ -13,13 +13,6 @@ function setMode(newMode: 'pool' | 'deck' | 'game') {
 <template>
   <div class="p-4 max-w-4xl mx-auto">
     <nav class="mb-6 flex gap-4">
-      <button 
-        @click="setMode('pool')" 
-        :class="{'font-bold underline': mode === 'pool'}"
-        class="px-4 py-2 bg-blue-200 rounded"
-      >
-        Configura Pool
-      </button>
       <button 
         @click="setMode('deck')" 
         :class="{'font-bold underline': mode === 'deck'}"
@@ -37,18 +30,12 @@ function setMode(newMode: 'pool' | 'deck' | 'game') {
     </nav>
 
     <section>
-      <div v-if="mode === 'pool'">
-        <h2 class="text-xl font-semibold mb-4">Configura Pool</h2>
-        <p>Visualizza il pool di carte selezionabili</p>
-        <section>
-          <GalleryCard />
-        </section>
-      </div>
-
       <div v-if="mode === 'deck'">
         <!-- Qui inseriremo configurazione mazzo -->
         <h2 class="text-xl font-semibold mb-4">Configura Mazzo</h2>
         <p>Seleziona carte dal pool per costruire il mazzo</p>
+        <GalleryCard />
+        <DeckBuilderPreview />
       </div>
 
       <div v-if="mode === 'game'">
