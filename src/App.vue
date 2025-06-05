@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
 import DeckBuilderPreview from './components/DeckBuilderPreview.vue'
 import Game from './components/Game.vue'
+import { useDeckStore } from './stores/deck'
 
 const mode = ref<'deck' | 'game'>('deck')
 
 function setMode(newMode: 'deck' | 'game') {
   mode.value = newMode
 }
+
+const deckStore = useDeckStore()
+
+onMounted(() => {
+  deckStore.loadDeckFromSession()
+})
 </script>
 
 <template>
